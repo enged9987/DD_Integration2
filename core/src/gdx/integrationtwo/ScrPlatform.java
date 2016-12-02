@@ -110,6 +110,7 @@ public class ScrPlatform implements Screen, InputProcessor {
             sprPlatform.update();
         }
         sprDino.PositionSet();
+        sprDino.HitDetection(fScreenWidth);
         HitDetection();
         sprDino.gravity();
         nFrame++;

@@ -78,7 +78,7 @@ public class SprDino extends Sprite {
         sprDino.setPosition(vPos.x, vPos.y);
     }
 
-   /* void HitDetection(float _ScreenWid) {
+    void HitDetection(float _ScreenWid) {
         fScreenWid = _ScreenWid;
         if ((sprDino.getX()+sprDino.getWidth() >= fScreenWid)) {       
             vPos.x = fScreenWid - (sprDino.getWidth());  
@@ -87,7 +87,7 @@ public class SprDino extends Sprite {
         }
 
 
-    }*/
+    }
 
 
     void Animate(Texture _txDinoState) {
