@@ -29,10 +29,29 @@ public class SprDino extends Sprite {
         bPlatformCarry = false;
         bMove = false;
     }    
-    
+    void gravity() {
+        vPrevPos.set(vPos);
+        if (vPos.y < 0) {
+            vPos.set(vPos.x, 0);
+            vDir.set(vDir.x, 0);
+            vGrav.set(0, 0);
+            bGrav = false;
+            bJump = false;
+        }
+        if (bGrav) {
+            vGrav.set(0, (float) (vGrav.y * 1.1));
+        }
+        if (vPos.y == fGround) {
+            vDir.set(vDir.x, 0);
+            vGrav.set(0, 0);
+            vPos.set(vPos.x, fGround);
+            bJump = false;
+            bGrav = false;
+        }
+    }
 
     void update() {
-        if (bJump) {
+        /*if (bJump) {
             vGrav.set(0, (float) (vGrav.y * 1.1));
         }
         if (vPos.y < 0) {
@@ -43,10 +62,23 @@ public class SprDino extends Sprite {
         }
         vDir.add(vGrav);
         vPos.add(vDir);
+        sprDino.setPosition(vPos.x, vPos.y);*/
+        if (bPlatformCarry && bMove == false) {
+            vDir.set((float) -0.5, 0);
+        } else if (bPlatformCarry == false && bMove == false) {
+            vDir.set(0, vDir.y);
+        }
+        vDir.add(vGrav);
+        vPos.add(vDir);
+        PositionSet();
+    }
+        
+    
+    void PositionSet() {
         sprDino.setPosition(vPos.x, vPos.y);
     }
 
-    void HitDetection(float _ScreenWid) {
+   /* void HitDetection(float _ScreenWid) {
         fScreenWid = _ScreenWid;
         if ((sprDino.getX()+sprDino.getWidth() >= fScreenWid)) {       
             vPos.x = fScreenWid - (sprDino.getWidth());  
@@ -55,7 +87,7 @@ public class SprDino extends Sprite {
         }
 
 
-    }
+    }*/
 
 
     void Animate(Texture _txDinoState) {
